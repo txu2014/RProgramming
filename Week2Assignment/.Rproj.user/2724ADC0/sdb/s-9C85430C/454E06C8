@@ -1,0 +1,17 @@
+{
+    "contents" : "corr <- function(directory, threshold = 0) {\n  ## 'directory' is a character vector of length 1 indicating\n  ## the location of the CSV files\n  \n  ## 'threshold' is a numeric vector of length 1 indicating the\n  ## number of completely observed observations (on all\n  ## variables) required to compute the correlation between\n  ## nitrate and sulfate; the default is 0\n  res <- numeric(0)\n  for (i in 1:332)\n  {\n    filename <- paste(\"./\",directory,\"/\"\n                      ,formatC(i,width=3,format=\"d\",flag=\"0\")\n                      ,\".csv\"\n                      ,sep=\"\")\n    csvdata <- read.csv(filename)\n    ok <- complete.cases(csvdata)\n    nd <- csvdata[ok,]\n    if (sum(ok) > threshold)\n    {\n      co <- cor(nd$sulfate,nd$nitrate)\n      res <- c(res, c(co))\n    }\n  }\n  ## Return a numeric vector of correlations\n  return(res)\n}",
+    "created" : 1408744526502.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "459366958",
+    "id" : "454E06C8",
+    "lastKnownWriteTime" : 1408745667,
+    "path" : "~/GitHub/RProgramming/Week2Assignment/corr.R",
+    "project_path" : "corr.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

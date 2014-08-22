@@ -1,0 +1,17 @@
+{
+    "contents" : "pollutantmean <- function(directory, pollutant, id = 1:332) {\n  ## 'directory' is a character vector of length 1 indicating\n  ## the location of the CSV files\n\n  ## 'pollutant' is a character vector of length 1 indicating\n  ## the name of the pollutant for which we will calculate the\n  ## mean; either \"sulfate\" or \"nitrate\".\n  \n  ## 'id' is an integer vector indicating the monitor ID numbers\n  ## to be used\n  \n  ## Return the mean of the pollutant across all monitors list\n  ## in the 'id' vector (ignoring NA values)\n\n  for (i in id)\n  {\n    filename <- paste(\"./\",directory,\"/\"\n                      ,formatC(i,width=3,format=\"d\",flag=\"0\")\n                      ,\".csv\"\n                      ,sep=\"\")\n    if (i==id[1])\n      {combidata <- read.csv(filename)}\n    else\n      {combidata <- rbind(combidata, read.csv(filename))}\n  }\n  #return(combidata)\n  res <- mean(combidata[[pollutant]],na.rm = TRUE)\n  return (round(res,digits=3))\n}",
+    "created" : 1408740817009.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1329671941",
+    "id" : "19573904",
+    "lastKnownWriteTime" : 1408746147,
+    "path" : "~/GitHub/RProgramming/Week2Assignment/pollutantmean.R",
+    "project_path" : "pollutantmean.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
